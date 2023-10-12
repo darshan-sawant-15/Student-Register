@@ -1,0 +1,183 @@
+<div class="container mt-5">
+  <div class="row pt-5 d-flex justify-content-center align-items-center">
+    <div class="col-md-8">
+      <div class="card p-4 border-secondary border-3">
+        <h2 class="text-center fw-bold">Update Student Details Here!</h2>
+
+        <form class="mt-4" [formGroup]="formGroup" (ngSubmit)="formSubmit()">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="fname"
+              formControlName="fname"
+              id="fname"
+              placeholder="Enter first name"
+              [ngClass]="
+                formGroup.get('fname')?.invalid &&
+                formGroup.get('fname')?.touched
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <label for="fname">First Name</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formGroup.get('fname')?.touched &&
+                formGroup.get('fname')?.invalid
+              "
+            >
+              <div *ngIf="formGroup.get('fname')?.hasError('required')">
+                Please add a first name
+              </div>
+              <div *ngIf="formGroup.get('fname')?.hasError('maxlength')">
+                First name should not exceed 30 characters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="lname"
+              formControlName="lname"
+              id="lname"
+              placeholder="Enter last name"
+              [ngClass]="
+                formGroup.get('lname')?.invalid &&
+                formGroup.get('lname')?.touched
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <label for="lname">Last Name</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formGroup.get('lname')?.touched &&
+                formGroup.get('lname')?.invalid
+              "
+            >
+              <div *ngIf="formGroup.get('lname')?.hasError('required')">
+                Please add a last name
+              </div>
+              <div *ngIf="formGroup.get('lname')?.hasError('maxlength')">
+                Last name should not exceed 30 characters
+              </div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              name="dob"
+              formControlName="dob"
+              id="dob"
+              placeholder="Enter date of birth"
+              [max]="maxDate.toISOString().split('T')[0]"
+              [ngClass]="
+                formGroup.get('dob')?.invalid && formGroup.get('dob')?.touched
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formGroup.get('dob')?.touched && formGroup.get('dob')?.invalid
+              "
+            >
+              <div *ngIf="formGroup.get('dob')?.hasError('required')">
+                Please enter date of birth
+              </div>
+              <div *ngIf="formGroup.get('dob')?.hasError('maxDate')">
+                Student needs to be minimum 16 years old
+              </div>
+            </div>
+            <label for="dob">Date of Birth</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select
+              type="text"
+              class="form-control"
+              name="course"
+              formControlName="course"
+              id="course"
+              placeholder="Enter course"
+              [ngClass]="
+                formGroup.get('course')?.invalid &&
+                formGroup.get('course')?.touched
+                  ? 'is-invalid'
+                  : ''
+              "
+            >
+              <option value="" disabled>Select a course</option>
+              <option value="Full Stack Developer">Full Stack Developer</option>
+              <option value="Data Science">Data Science</option>
+            </select>
+            <label for="course">Course</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formGroup.get('course')?.touched &&
+                formGroup.get('course')?.invalid
+              "
+            >
+              <div *ngIf="formGroup.get('course')?.hasError('required')">
+                Please select a course
+              </div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              formControlName="email"
+              id="email"
+              placeholder="Enter email"
+              [ngClass]="
+                formGroup.get('email')?.invalid &&
+                formGroup.get('email')?.touched
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <label for="email">Email</label>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formGroup.get('email')?.touched &&
+                formGroup.get('email')?.invalid
+              "
+            >
+              <div *ngIf="formGroup.get('email')?.hasError('required')">
+                Please add an email address
+              </div>
+              <div *ngIf="formGroup.get('email')?.hasError('email')">
+                Invalid email format
+              </div>
+              <!-- Add other validators if needed -->
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-md btn-secondary"
+              type="submit"
+              [disabled]="formGroup.invalid"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

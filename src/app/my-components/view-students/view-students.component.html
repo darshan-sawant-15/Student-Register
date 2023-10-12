@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <div class="row pt-5 d-flex justify-content-center align-items-center">
+    <div class="col-md-8">
+      <div class="card p-4 border-secondary border-3 mb-5">
+        <h2 class="text-center fw-bold">All Students That Were Added !</h2>
+
+        <div
+          class="alert alert-secondary text-center mt-3"
+          role="alert"
+          *ngIf="studentList.length == 0"
+        >
+          <strong>No Students Added Yet</strong>
+        </div>
+
+        <div class="table-responsive" *ngIf="studentList.length > 0">
+          <table class="table table-hover table-bordered mt-4 text-center">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of studentList">
+                <td>
+                  <a
+                    class="text-secondary text-decoration-none"
+                    routerLink="/view-student/{{ student._id }}"
+                    >{{ student.fname }}
+                  </a>
+                </td>
+                <td>
+                  {{ student.course }}
+                </td>
+                <td>
+                  <div class="d-flex justify-content-center">
+                    <a
+                      class="btn btn-sm btn-primary me-2"
+                      routerLink="/update-student/{{ student._id }}"
+                      ><i class="bi bi-pencil-square"></i
+                    ></a>
+                    <a
+                      class="btn btn-sm btn-danger"
+                      (click)="deleteStudent(student._id)"
+                      ><i class="bi bi-trash3"></i
+                    ></a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center text-secondary">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" *ngIf="page>1">
+                <a class="page-link text-secondary" aria-label="Previous" (click)="goToPage(page-1)" >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li
+                class="page-item"
+                *ngFor="let number of numberRange(1, totalPages)"
+              >
+                <a class="page-link text-secondary" (click)="goToPage(number)">{{ number }}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link text-secondary" aria-label="Next" (click)="goToPage(page+1)" *ngIf="page<totalPages">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
