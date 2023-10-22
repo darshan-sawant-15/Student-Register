@@ -6,8 +6,8 @@ import { Student } from '../my-models/student.model';
   providedIn: 'root',
 })
 export class StudentService {
-  // readonly url = 'https://famous-gold-houndstooth.cyclic.app/';
-  readonly url = 'http://localhost:3000/';
+  readonly url = 'https://famous-gold-houndstooth.cyclic.app/';
+  // readonly url = 'http://localhost:3000/';
 
   constructor(private httpClient: HttpClient) {}
 
