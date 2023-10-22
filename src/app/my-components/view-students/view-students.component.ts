@@ -13,6 +13,8 @@ export class ViewStudentsComponent {
   studentList: Student[] = [];
   page: number = 1;
   totalPages!: number;
+  searchTerm!: string;
+  searchedStudents: Student[] = [];
 
   constructor(private service: StudentService, private route: ActivatedRoute) {}
 
@@ -98,5 +100,28 @@ export class ViewStudentsComponent {
         );
       }
     });
+  }
+
+  searchStudents() {
+    this.searchedStudents = [];
+    this.service.getSearchedStudent(this.searchTerm).subscribe(
+      (data) => {
+        if (Array.isArray(data)) {
+          for (const studentData of data) {
+            const student = new Student();
+            student._id = studentData._id;
+            student.fname = studentData.fname;
+            student.lname = studentData.lname;
+            student.course = studentData.course;
+            student.email = studentData.email;
+            student.dob = studentData.dob;
+            this.searchedStudents.push(student);
+          }
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

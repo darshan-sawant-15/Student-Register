@@ -1,5 +1,14 @@
-.page-link:hover{
-    background-color: grey!important;
-    color: white!important;
+.page-link:hover {
+  background-color: grey !important;
+  color: white !important;
+}
 
+.search-engine {
+  position: relative;
+}
+
+.search-result {
+  position: absolute;
+  width: 100%;
+  padding-right: 30px;
 }
